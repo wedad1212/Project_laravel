@@ -1,0 +1,33 @@
+.card-list{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.card{
+    margin: 30px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 40px;
+    background-color: blueviolet;
+}
+.card-title{
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 50px
+}
+.main-text{
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+input{
+    color: blueviolet;
+    border-radius: 40px;
+    font-size: 20px;
+border-color: white;
+}
