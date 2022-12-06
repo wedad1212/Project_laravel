@@ -16,10 +16,8 @@
 <div class="card">
     <div class="card-title">
         <p>{{$category->category}}</p>
-        @guest   
-        @endguest
-        <form action="{{route('get.books',$category->category)}}" method="Get">
-        <input type="submit" value="shwo books" value="{{$category->id}}">
+        <form action="{{route('get.books',$category->id)}}" method="Get">
+        <input type="submit" value="shwo books" value="{{$category->id}}" name="show">
         <br>
     </div>
 </div>

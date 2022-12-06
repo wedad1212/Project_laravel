@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\BooksshowController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\StudentController;
@@ -22,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 
 // get books of the category to users
 Route::get('getbooks/{id}',[BooksshowController::class,'getbooks'])->name('get.books');
+
+
+ // add cart to cart || controller to all book
+Route::post('add_to_cart\{id}',[CartController::class,'caddCart'])->name('cart.add');
 
 
 

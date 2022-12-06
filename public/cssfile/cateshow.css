@@ -16,7 +16,7 @@
     text-align: center;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 50px
 }
 .main-text{
@@ -30,4 +30,49 @@ input{
     border-radius: 40px;
     font-size: 20px;
 border-color: white;
+}
+.style-cate-title{
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.card-book{
+    margin: 30px auto;
+    width: 400px;
+    height: 400px;
+    border-radius: 40px;
+    background-color: white; 
+    box-shadow: 10px 10px 10px  rgba(137, 43, 226, 0.377); 
+}
+.title{
+    color: blueviolet;
+    text-align: center;
+    padding-top: 20px ;
+    font-size: 20px;
+}
+.author{
+    color: rgba(137, 43, 226, 0.712);
+    text-align:center;
+    padding-top: 20px ;
+    font-size: 20px;
+}
+.des{
+    color: rgba(137, 43, 226, 0.712);
+    text-align:center;
+    padding-top: 20px ;
+    font-size: 15px;  
+}
+h6{
+    color: rgba(137, 43, 226, 0.712);
+
+}
+button{
+    background: blueviolet;
+  color: #fff;
+  border: 5px solid white;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  padding: 0.7rem 2rem;
 }
