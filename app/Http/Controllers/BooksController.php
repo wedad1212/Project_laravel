@@ -19,6 +19,16 @@ use Nette\Utils\Type;
 
 class BooksController extends Controller
 {
+
+	public function allcate(){
+		$categories=Categories::all();
+		return view('panel.allcate',compact('categories'));
+	}
+	public function deletecate($id){
+		Categories::destroy($id);
+		return redirect()->route('all-categories');
+	}
+
     public function __construct(){
 
 		$this->filter_params = array('category_id');

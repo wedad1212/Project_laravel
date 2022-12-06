@@ -22,6 +22,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ URL::route('all-categories') }}">
+                    <i class="menu-icon icon-th-list"></i>All Category in Library
+                </a>
+            </li>
+            <li>
                 <a href="{{ URL::route('add-book-category') }}">
                     <i class="menu-icon icon-folder-open-alt"></i>Add Book Category
                 </a>

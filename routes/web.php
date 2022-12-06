@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\StudentController;
+use App\Models\Books;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,11 @@ Route::get('getbooks/{id}',[BooksshowController::class,'getbooks'])->name('get.b
  // add cart to cart || controller to all book
 Route::post('add_to_cart\{id}',[CartController::class,'caddCart'])->name('cart.add');
 
+// Render all category panel
+Route::get('all-categories',[BooksController::class,'allcate'])->name('all-categories');
 
+// delete category
+Route::delete('delete/{id}',[BooksController::class,'deletecate'])->name('delete-cate');
 
 
 // Unauthenticated group
@@ -82,6 +87,7 @@ Route::group(['middleware' => ['auth']] , function() {
 
 	// Render All Books panel
     Route::get('/all-books', [BooksController::class, 'renderAllBooks'])->name('all-books');
+
 
     Route::get('/bookBycategory/{cat_id}', [BooksController::class, 'BookByCategory'])->name('bookBycategory');
 
