@@ -75,12 +75,13 @@ $(document).on("click","#addbooks",function(){
         title = f$('input[data-form-field~=title]').val();
         author = f$('input[data-form-field~=author]').val();
         description = f$('textarea[data-form-field~=description]').val();
+        price = f$('input[data-form-field~=price]').val();
         category_id = f$('select[data-form-field~=category]').val();
         number = parseInt(f$('input[data-form-field~=number]').val());
         auth_user = f$('input[data-form-field~=auth_user]').val();
         _token = f$('input[data-form-field~=token]').val();
 
-        if(title == "" || author == "" || description == "" || number == null){
+        if(title == "" || author == "" || description == "" ||price==""|| number == null){
             module_body.prepend(templates.alert_box( {type: 'danger', message: 'Book Details Not Complete'} ));
             send_flag = false;
         }
@@ -90,7 +91,7 @@ $(document).on("click","#addbooks",function(){
             $.ajax({
                 type : 'POST',
                 data : {
-                   title:title, author:author, description:description,
+                   title:title, author:author, description:description,price:price,
                     number:number, category_id : category_id, _token:_token,
                     auth_user:auth_user
                 },
@@ -122,6 +123,7 @@ function clearform(){
     $('#title').val('');
     $('#author').val('');
     $('#description').val('');
+    $('#price').val('');
     $('#number').val('');
     $('#category').val('');
 }

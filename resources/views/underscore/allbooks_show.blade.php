@@ -3,8 +3,10 @@
 	<td><%= obj.title %></td>
 	<td><%= obj.author %></td>
 	<td><%= obj.description %></td>
+	<td><%= obj.price %></td>
 	<td><%= obj.category %>
 	</td>
 	<td><a class="btn btn-success"><%= obj.avaliable %></a></td>
 	<td><a class="btn btn-inverse"><%= obj.total_books %></a></td>
+	<td><a href="">edit</a></td>
 </tr>

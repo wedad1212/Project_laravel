@@ -19,14 +19,47 @@ use Nette\Utils\Type;
 
 class BooksController extends Controller
 {
+	public function deletebook($id){
+		$book=Books::find($id);
+		if(!$book)
+		return redirect()->route('all-books');
+		$book->delete($id);
+		return redirect()->route('delete.book',$id);
+
+	}
+
+	public function editbook($id){
+		$db_control = new HomeController();
+		$book= Books::findorFail($id);
+		return view('panel.edit_book',compact('book'))->with('categories_list', $db_control->categories_list);
+
+	}
+	public function updatebook(Request $request,$id){
+		$user_id = Auth::id();
+		$book=Books::findorFail($id);
+		$book->updatebook([
+			    'title'			=> $request->title,
+				'author'		=> $request->author,
+				'price'         => $request->price,
+				'description' 	=> $request->description,
+				'category_id'	=> $request->category_id,
+				'added_by'		=> $user_id
+
+		]);
+		return redirect()->route('all-books');
+	}
 
 	public function allcate(){
 		$categories=Categories::all();
 		return view('panel.allcate',compact('categories'));
 	}
 	public function deletecate($id){
-		Categories::destroy($id);
+		$cate=Categories::find($id);
+		if(!$cate)
 		return redirect()->route('all-categories');
+		$cate->delete($id);
+		return redirect()->route('delete-cate',$id);
+
 	}
 
     public function __construct(){
@@ -43,7 +76,7 @@ class BooksController extends Controller
 	public function index()
 	{
 
-		$book_list = Books::select('book_id','title','author','description','book_categories.category')
+		$book_list = Books::select('book_id','title','author','description','price','book_categories.category')
 		->join('book_categories', 'book_categories.id', '=', 'books.category_id')
 			->orderBy('book_id')->get();
 		// dd($book_list);
@@ -99,6 +132,7 @@ class BooksController extends Controller
 			$book_title = Books::create([
 				'title'			=> $books['title'],
 				'author'		=> $books['author'],
+				'price'         => $books['price'],
 				'description' 	=> $books['description'],
 				'category_id'	=> $books['category_id'],
 				'added_by'		=> $user_id
@@ -249,10 +283,7 @@ class BooksController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
+	
 
 
 	/**
@@ -280,15 +311,16 @@ class BooksController extends Controller
     }
 
     public function renderAllBooks() {
+		$books=Books::all();
         $db_control = new HomeController();
 
-		return view('panel.allbook')
+		return view('panel.allbook',compact('books'))
             ->with('categories_list', $db_control->categories_list);
 	}
 
 	public function BookByCategory($cat_id)
 	{
-		$book_list = Books::select('book_id','title','author','description','book_categories.category')
+		$book_list = Books::select('book_id','title','author','description','price','book_categories.category')
 		->join('book_categories', 'book_categories.id', '=', 'books.category_id')
 			->where('category_id', $cat_id)->orderBy('book_id');
 

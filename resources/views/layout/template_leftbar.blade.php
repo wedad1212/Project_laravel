@@ -36,11 +36,11 @@
                     <i class="menu-icon icon-folder-open-alt"></i>Add Books
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ URL::route('settings') }}">
                     <i class="menu-icon icon-cog"></i>Add Settings
                 </a>
-            </li>
+            </li> --}}
 
             {{-- <li>
                 <a href="{{ URL::route('issue-return') }}">

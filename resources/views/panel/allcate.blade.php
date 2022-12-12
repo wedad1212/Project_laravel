@@ -28,20 +28,11 @@
                 <tr>
                     <th>{{$category->id}}</th>
                     <th>{{$category->category}}</th>
-                    <th>
-                        <form action="{{route('delete-cate',$category->id)}}" method="POST">
-                            @csrf
-                            
-{{method_field('delete')}}
-                         
-                         <input class="input-delete" type="submit" value="delete">
-                    </th>
-                    
+                    <th><a style="color: red" href="{{route('delete-cate',$category->id)}}">delete</a></th>
                 </tr>
                 @endforeach
                 @endif
             </tbody>
-          
         </table>
         </div>
     </div>

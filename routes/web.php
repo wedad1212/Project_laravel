@@ -21,7 +21,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// edit book
+Route::get('/edit/{id}',[BooksController::class,'editbook'])->name('edit.book');
+// update book
+Route::put('update/{id}',[BooksController::class,'updatebook'])->name('update.book');
+// delete book
+Route::get('/delete/{id}',[BooksController::class,'deletebook'])->name('delete.book');
 // get books of the category to users
 Route::get('getbooks/{id}',[BooksshowController::class,'getbooks'])->name('get.books');
 
@@ -33,7 +38,7 @@ Route::post('add_to_cart\{id}',[CartController::class,'caddCart'])->name('cart.a
 Route::get('all-categories',[BooksController::class,'allcate'])->name('all-categories');
 
 // delete category
-Route::delete('delete/{id}',[BooksController::class,'deletecate'])->name('delete-cate');
+Route::get('delete/{id}',[BooksController::class,'deletecate'])->name('delete-cate');
 
 
 // Unauthenticated group
@@ -48,9 +53,7 @@ Route::group(array('before' => 'guest'), function() {
 		// Sign in (POST)
         Route::post('/sign-in', [AccountController::class, 'postSignIn'])->name('account-sign-in-post');
 
-		// Sign in (POST)
-        // Route::post('/student-registration', [StudentController::class, 'postRegistration'])->name('student-registration-post');
-
+	
 	});
 
 	// Sign in (GET)
@@ -58,9 +61,6 @@ Route::group(array('before' => 'guest'), function() {
 
 	// Create an account (GET)
     Route::get('/create', [AccountController::class, 'getCreate'])->name('account-create');
-
-	// Student Registeration form
-    Route::get('/student-registration', [StudentController::class, 'getRegistration'])->name('student-registration');
 
     // Render search books panel
     Route::get('/book', [BooksController::class, 'searchBook'])->name('search-book');
@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth']] , function() {
 
 	// Render Add Books panel
     Route::get('/add-books', [BooksController::class, 'renderAddBooks'])->name('add-books');
+    Route::post('/books', [BooksController::class, 'store'])->name('books.store');
 
     Route::get('/add-book-category', [BooksController::class, 'renderAddBookCategory'])->name('add-book-category');
 
@@ -90,24 +91,6 @@ Route::group(['middleware' => ['auth']] , function() {
 
 
     Route::get('/bookBycategory/{cat_id}', [BooksController::class, 'BookByCategory'])->name('bookBycategory');
-
-	// Students
-    Route::get('/registered-students', [StudentController::class, 'renderStudents'])->name('registered-students');
-
-    // Render students approval panel
-    Route::get('/students-for-approval', [StudentController::class, 'renderApprovalStudents'])->name('students-for-approval');
-
-	  // Render students approval panel
-
-    Route::get('/settings', [StudentController::class, 'Setting'])->name('settings');
-
-	  // Render students approval panel
-    Route::post('/setting', [StudentController::class, 'StoreSetting'])->name('settings.store');
-
-    // Main students Controlller resource
-	Route::resource('/student', StudentController::class);
-
-    Route::post('/studentByattribute', [StudentController::class, 'StudentByAttribute'])->name('studentByattribute');
 
     // Issue Logs
     Route::get('/issue-return', [LogController::class, 'renderIssueReturn'])->name('issue-return');
